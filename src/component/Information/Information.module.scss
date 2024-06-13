@@ -1,0 +1,22 @@
+.information {
+    padding: 4vw;
+}
+.title{
+    font-weight: bold;
+    font-size: 6vw;
+}
+.text{
+    font-size: 4.2vw;
+    padding-bottom: 5vw;
+    padding-top: 5vw;
+}
+.picture {
+    width: 100%;
+    border-radius: 15px;
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

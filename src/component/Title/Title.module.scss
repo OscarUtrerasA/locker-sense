@@ -1,0 +1,17 @@
+.title {
+    /* Inicio área: Posición del componente en la parte superior de la página. */
+    height: 8.5vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    /* Fin área */
+    /* Inicio área: Centrado de los elementos del componente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Fin área */
+    /* Inicio del área: Forma y tamaño responsive de las letras */
+    font-weight: bold; /* Aplicar fuente en negrita */
+    font-size: 3.5vw; /* Tamaño de letra responsive */
+    /* Fin área */
+}

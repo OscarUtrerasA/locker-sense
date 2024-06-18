@@ -13,7 +13,10 @@ const Information: React.FC<InformationProps>  = ({title, text, picture}) => {
 		<div className={styles.information}>
  			<div className={styles.title}>{title}</div>
             <div className={styles.text}>{text}</div>
-            <img className={styles.picture} src={picture} alt="imagen de informacion" />
+			<div className={styles.frame}>
+				<img className={styles.picture} src={picture} alt="imagen de informacion" />
+			</div>
+            
  		</div>
 	);
 };

@@ -8,8 +8,7 @@ export type ActionProps = {
 
 const Action: React.FC<ActionProps>  = ({}) => {
 	return (
-		<div className={styles.action}>
- 		</div>
+		<div className={styles.action}></div>
 	);
 };
 

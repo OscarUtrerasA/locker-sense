@@ -10,6 +10,7 @@ import {
 } from "@microsoft/signalr";
 
 import { useRouter } from 'next/navigation'
+import { Console } from 'console';
 
 export type FooterProps = {
 	// types...
@@ -18,11 +19,11 @@ export type FooterProps = {
 const Footer: React.FC<FooterProps>  = ({}) => {
 	const router = useRouter()
 	const [connection, setConnection] = useState<HubConnection | null>(null);
-	const canal = "ReceiveMessage";
+	const clientMethod = "SetCurrentView"; // This is the method invoqued by the .Net API
 
 	useEffect(() => {
 		const connect = new HubConnectionBuilder()
-		.withUrl("http://localhost:5266/hub")
+		.withUrl("http://localhost:5302/frontRpc")
 		.withAutomaticReconnect()
 		.configureLogging(LogLevel.Information)
 		.build();
@@ -32,17 +33,19 @@ const Footer: React.FC<FooterProps>  = ({}) => {
 		connect
 		.start()
 		.then(() => {
-			connect.on(canal, (_sender, content, _sentTime) => {
-			routerPush(content);
+			connect.on(clientMethod, (content) => {
+				console.log("Cambiando la pagina a: ", content)
+				routerPush(content);
 			});
-			connect.invoke("RetrieveMessageHistory");
+			// connect.invoke("RetrieveMessageHistory");
 		})
 		.catch((err) =>
 			console.error("Error while connecting to SignalR Hub:", err)
 		);
+
 		return () => {
 		if (connection) {
-			connection.off(canal);
+			connection.off(clientMethod);
 		}
 		};
 	}, []);

@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# LockerFront
 
-## Getting Started
+This is a simple kiosk that is shown in the screen of the lockers, cueing the user during the proceess (ie. "Welcome", "Validating code", etc).
 
-First, run the development server:
+This connects to the [Locker.Service](https://dev.azure.com/totalpackltda/Lockers/_git/Locker.Service) via SignalR to receive `changeCurrentView` instructions. Use the `http://localhost:<Locker.Service>/frontRpc` hub to handle this connection. Currently, its CORS do not allow external hosts. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Installation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> [!INFO] Why is Docker not used here  
+> This project interacts with an application that connects to the COM ports and requieres weird drivers, thus, it is bare metal. Adding an additional container layer would be more hassle than it is worth. Yet. 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Install dependencies with `npm i` (or use something like `bun install` instead[^1])
+2. Run the developement server with `npm run dev` (the route functions still depends on Node.js, thus we can't use _bun_ here)
+3. Open the server at [http://localhost:3000](http://localhost:3000)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+You can build and serve the project with 
 
-## Learn More
+1. `npm run build`
+2. `npm run start`
 
-To learn more about Next.js, take a look at the following resources:
+## SignalR and view changes 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Note you need a SignalR hub running at `/frontRpc` to control the views, but you can mock it without the actual _Locker.Service_ by using Postman instead (you still need the SignalR hub, you can copy the [demo project](https://learn.microsoft.com/en-us/aspnet/core/tutorials/signalr)  and change the hub name). 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+In Postman: 
 
-## Deploy on Vercel
+1. Connect WebSocket to `wss://localhost:<Locker.Service>/frontRpc`  
+2. Protocol initialization sending `{"protocol":"json","version":1}` (do include the weird terminator ``). 
+3. Change a view: `{"arguments":["success"],"invocationId":"0","target":"ChangeView","type":1}`. Valid values are the routes, like `success`, `validation`, `failure`, `bye`. 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[^1]: Unlike NPM, [Bun](https://bun.sh) uses a global package store, thus the common packages may already be installed and the `node_modules` is a reference folder instead of a space hog. 

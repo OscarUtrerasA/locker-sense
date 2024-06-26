@@ -11,7 +11,7 @@ export default function Failure() {
         // Crear el timeout que actualiza el estado después de 5 segundos (5000 ms)
         const timer = setTimeout(() => {
             router.push('/')
-        }, 8000)
+        }, 5000)
 
         // Limpiar el timeout si el componente se desmonta antes de que el timeout termine
         return () => clearTimeout(timer)
@@ -24,7 +24,7 @@ export default function Failure() {
                     title="Identificación fallida"
                     text="No pudimos identificar tu código QR. Por favor, verifica que el código sea correcto e intenta de nuevo."
                 />
-                <Countdown seconds={8} />
+                <Countdown seconds={5} />
             </div>
         </main>
     )

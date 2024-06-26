@@ -1,7 +1,20 @@
+'use client'
 import { Information } from '@/component/Information'
 import { HandMetal } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 export default function Bye() {
+    const router = useRouter()
+    useEffect(() => {
+        // Crear el timeout que actualiza el estado después de 5 segundos (5000 ms)
+        const timer = setTimeout(() => {
+            router.push('/')
+        }, 5000)
+
+        // Limpiar el timeout si el componente se desmonta antes de que el timeout termine
+        return () => clearTimeout(timer)
+    }, [])
     return (
         <main>
             <div className="relative  grid justify-items-center">

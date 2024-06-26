@@ -1,62 +1,58 @@
-"use client";
-import React from 'react';
-import styles from './Footer.module.scss';
+'use client'
+import React from 'react'
+import styles from './Footer.module.scss'
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 import {
-  HubConnection,
-  HubConnectionBuilder,
-  LogLevel,
-} from "@microsoft/signalr";
+    HubConnection,
+    HubConnectionBuilder,
+    LogLevel,
+} from '@microsoft/signalr'
 
 import { useRouter } from 'next/navigation'
-import { Console } from 'console';
 
 export type FooterProps = {
-	// types...
+    // types...
 }
 
-const Footer: React.FC<FooterProps>  = ({}) => {
-	const router = useRouter()
-	const [connection, setConnection] = useState<HubConnection | null>(null);
-	const clientMethod = "SetCurrentView"; // This is the method invoqued by the .Net API
+const Footer: React.FC<FooterProps> = ({}) => {
+    const router = useRouter()
+    const [connection, setConnection] = useState<HubConnection | null>(null)
+    const clientMethod = 'SetCurrentView' // This is the method invoqued by the .Net API
 
-	useEffect(() => {
-		const connect = new HubConnectionBuilder()
-		.withUrl("http://localhost:5302/frontRpc")
-		.withAutomaticReconnect()
-		.configureLogging(LogLevel.Information)
-		.build();
+    useEffect(() => {
+        const connect = new HubConnectionBuilder()
+            .withUrl('http://localhost:85/frontRpc')
+            .withAutomaticReconnect()
+            .configureLogging(LogLevel.Information)
+            .build()
 
-		setConnection(connect);
+        setConnection(connect)
 
-		connect
-		.start()
-		.then(() => {
-			connect.on(clientMethod, (content) => {
-				console.log("Cambiando la pagina a: ", content)
-				routerPush(content);
-			});
-			// connect.invoke("RetrieveMessageHistory");
-		})
-		.catch((err) =>
-			console.error("Error while connecting to SignalR Hub:", err)
-		);
+        connect
+            .start()
+            .then(() => {
+                connect.on(clientMethod, (content) => {
+                    console.log('Cambiando la pagina a: ', content)
+                    routerPush(content)
+                })
+                // connect.invoke("RetrieveMessageHistory");
+            })
+            .catch((err) =>
+                console.error('Error while connecting to SignalR Hub:', err)
+            )
 
-		return () => {
-		if (connection) {
-			connection.off(clientMethod);
-		}
-		};
-	}, []);
+        return () => {
+            if (connection) {
+                connection.off(clientMethod)
+            }
+        }
+    }, [])
 
-	const routerPush = (rute: string) => {
-		return router.push(rute);
-	}
-	return (
-		<div className={styles.footer}>
- 		</div>
-	);
-};
+    const routerPush = (rute: string) => {
+        return router.push(rute)
+    }
+    return <div className={styles.footer}></div>
+}
 
-export default Footer;
+export default Footer

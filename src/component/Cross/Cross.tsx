@@ -1,27 +1,25 @@
-"use client";
-import React from 'react';
-import './Cross.css';
+'use client'
+import React from 'react'
+import './Cross.css'
 
 export type CrossProps = {
-	// types...
+    // types...
 }
 
-const Cross: React.FC<CrossProps>  = ({}) => {
-	return (
-		<div className="loader">
-			<div className="container">
-				<div className="carousel">
-				<div className="death"></div>
-				<div className="death"></div>
-				<div className="death"></div>
-				<div className="death"></div>
-				<div className="death"></div>
-				<div className="death"></div>
-				<div className="death"></div>
-				</div> 
-			</div>
-		</div>
-	);
-};
+const Cross: React.FC<CrossProps> = ({}) => {
+    return (
+        <div className="loader">
+            <div className="container">
+                <div className="carousel">
+                    <div className="death"></div>
+                    <div className="death"></div>
+                    <div className="death"></div>
+                    <div className="death"></div>
+                    <div className="death"></div>
+                </div>
+            </div>
+        </div>
+    )
+}
 
-export default Cross;
+export default Cross

@@ -25,8 +25,7 @@ export default function Bye() {
                 <HandMetal
                     size={256}
                     strokeWidth={1}
-                    color="#3e9392"
-                    className="mt-80"
+                    className="stroke-primary-500  mt-80"
                 />
             </div>
         </main>

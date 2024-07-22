@@ -1,9 +1,6 @@
 import { Information } from '@/component/Information'
 import { LockKeyhole } from 'lucide-react'
 
-import colors from 'tailwindcss/colors'
-const primary_500 = colors.indigo[400]
-
 export default function Home() {
     return (
         <main>

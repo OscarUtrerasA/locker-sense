@@ -4,6 +4,9 @@ import { join } from 'path'
 import { skeleton } from '@skeletonlabs/skeleton/plugin'
 import * as themes from '@skeletonlabs/skeleton/themes' // Import the themes
 
+// Custom themes
+import totalPack from './custom_themes/totalpack'
+
 const config: Config = {
     content: [
         './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -30,6 +33,7 @@ const config: Config = {
                 themes.rose,
                 themes.pine,
                 themes.catppuccin,
+                totalPack,
             ],
         }),
     ],

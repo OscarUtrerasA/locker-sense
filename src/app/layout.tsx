@@ -19,7 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body 
+        data-theme={process.env.CLIENT_THEME}
+        className={inter.className}
+      >
         <Title />
         {children}
         <Action />

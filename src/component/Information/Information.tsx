@@ -10,7 +10,7 @@ export type InformationProps = {
 const Information: React.FC<InformationProps>  = ({title, text }) => {
 	return (
 		<div className={styles.Information}>
- 			<div className={`${styles.title} text-center font-bold text-primary-500`}>{title}</div>
+ 			<div className={styles.title}>{title}</div>
 			<div className={`${styles.text} text-center`}>{text}</div>
  		</div>
 	);

@@ -1,54 +1,86 @@
-import { Information } from '@/component/Information'
+'use client'
 import { Backarrow } from '@/component/Backarrow'
+import { FormEvent } from 'react'
+import { useState } from 'react'
 // import { CircleDollarSign, Check, Search } from 'lucide-react'
 
 export default function UserPass() {
+    const [password, setPassword] = useState('')
+    const [run, setRun] = useState('')
+    const [responseMessage, setResponseMessage] = useState('')
+    const handleSubmit = async (e: any) => {
+        e.preventDefault()
+        console.log(JSON.stringify({ run, password }))
+
+        const apiUrl = `http://localhost:85/validate?user=${encodeURIComponent(
+            run
+        )}&pass=${encodeURIComponent(password)}`
+
+        // Realizar la petición POST
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+
+            if (response.ok) {
+                const data = await response.json()
+                setResponseMessage(`Response: ${JSON.stringify(data)}`)
+            } else {
+                setResponseMessage(`Error: ${response.statusText}`)
+            }
+        } catch (error: any) {
+            setResponseMessage(`Error: ${error.message}`)
+        }
+    }
     return (
         <main className="relative grid justify-items-center">
             <div style={{ paddingTop: '8%' }}> {/* Spacer */}</div>
             <Backarrow ruta="/" />
-            <form className="bg-surface-100-900 shadow-md rounded px-8 pt-6 pb-8 mb-4 w-2/3">
-                <div className="mb-6">
+            <form
+                onSubmit={handleSubmit}
+                className="bg-surface-100-900 shadow-md rounded px-8 pt-6 pb-8 mb-4 w-2/3"
+            >
+                <div>
                     <label
                         className="block text-xl text-surface-500 font-bold my-2"
-                        htmlFor="password"
+                        htmlFor="run"
                     >
-                        RUN Cliente
+                        RUN:
                     </label>
                     <input
                         className="shadow appearance-none border border-error-500 rounded w-full py-2 px-3 text-surface-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        id="password"
-                        type="text" // type="password"
-                        placeholder="11.111.111-1"
+                        type="run"
+                        id="run"
+                        value={run}
+                        onChange={(e) => setRun(e.target.value)}
                     />
-                    <p className="text-error-500 italic">Ingresa tu RUN.</p>
                 </div>
-
                 <br className="h-5" />
-
-                <div className="mb-4">
+                <div>
                     <label
+                        htmlFor="password"
                         className="block text-xl text-surface-500 font-bold mb-2"
-                        htmlFor="username"
                     >
-                        Número de Orden
+                        Orden:
                     </label>
                     <input
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-surface-500 leading-tight focus:outline-none focus:shadow-outline"
-                        id="username"
-                        type="number"
-                        placeholder="1111111111"
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
 
-                <div className="flex items-center justify-between">
-                    <button
-                        className="bg-primary-500 hover:bg-primary-700 text-white text-xl font-bold mt-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button"
-                    >
-                        Verificar
-                    </button>
-                </div>
+                <button
+                    type="submit"
+                    className="bg-primary-500 hover:bg-primary-700 text-white text-xl font-bold mt-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                    Validar
+                </button>
             </form>
             <p className="text-center text-surface-400 text-xs">
                 &copy;2024 TotalPack Ltda.

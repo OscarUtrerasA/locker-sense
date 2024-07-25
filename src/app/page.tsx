@@ -1,10 +1,20 @@
+'use client'
 import { Information } from '@/component/Information'
 import { LockKeyhole } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { KeyRound } from 'lucide-react'
 
 export default function Home() {
+    const router = useRouter()
+    function toPassView() {
+        router.push('/userpass')
+    }
     return (
         <main>
-            <div className="relative grid justify-items-center">
+            <div
+                className="relative grid justify-items-center"
+                onClick={toPassView}
+            >
                 <LockKeyhole
                     size={256}
                     strokeWidth={1}
@@ -13,8 +23,9 @@ export default function Home() {
 
                 <Information
                     title="Locker"
-                    text="Nuestro mejor locker hasta ahora."
+                    text="Presenta QR o usa tu clave."
                 />
+                <KeyRound size={40} className="stroke-primary-500" />
             </div>
         </main>
     )

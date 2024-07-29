@@ -1,20 +1,10 @@
 'use client'
 import { Cross } from '@/component/Cross'
 import { Information } from '@/component/Information'
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { redirect } from '../../helpers/redirect'
 
 export default function Failure() {
-    const router = useRouter()
-    useEffect(() => {
-        // Crear el timeout que actualiza el estado después de 5 segundos (5000 ms)
-        const timer = setTimeout(() => {
-            router.push('/')
-        }, 5000)
-
-        // Limpiar el timeout si el componente se desmonta antes de que el timeout termine
-        return () => clearTimeout(timer)
-    }, [])
+    redirect('/', 20)
     return (
         <main>
             <div className="relative">

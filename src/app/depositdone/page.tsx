@@ -4,7 +4,7 @@ import { PackageCheck } from 'lucide-react'
 import { redirect } from '../../helpers/redirect'
 
 export default function DepositDone() {
-    redirect('/', 5000)
+    redirect('/', 10)
     return (
         <main>
             <div className="relative grid justify-items-center">

@@ -4,7 +4,7 @@ import { Users } from 'lucide-react'
 import { redirect } from '../../helpers/redirect'
 
 export default function GoToDesk() {
-    redirect('/', 5000)
+    redirect('/', 17)
     return (
         <main>
             <div className="relative grid justify-items-center">

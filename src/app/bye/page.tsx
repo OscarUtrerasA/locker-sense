@@ -4,7 +4,7 @@ import { HandMetal } from 'lucide-react'
 import { redirect } from '../../helpers/redirect'
 
 export default function Bye() {
-    redirect('/', 5000)
+    redirect('/', 12)
     return (
         <main>
             <div className="relative  grid justify-items-center">

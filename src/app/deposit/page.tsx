@@ -1,15 +1,15 @@
 import { Information } from '@/component/Information'
-import { PackageOpen } from 'lucide-react'
+import { Package } from 'lucide-react'
 
-export default function Success() {
+export default function Deposit() {
     return (
         <main>
-            <div className="relative  grid justify-items-center">
+            <div className="relative grid justify-items-center">
                 <Information
                     title="¡Éxito!"
-                    text="Tu casillero está ahora abierto. Por favor, toma tus artículos y cierra la puerta."
+                    text="El casillero está ahora abierto. Por favor, deposita los artículos y cierra la puerta."
                 />
-                <PackageOpen
+                <Package
                     size={256}
                     strokeWidth={1}
                     className="stroke-primary-500 animate-bounce mt-80"

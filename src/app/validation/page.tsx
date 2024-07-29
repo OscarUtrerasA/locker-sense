@@ -1,15 +1,16 @@
-import { Hamster } from "@/component/Hamster";
-import { Information } from "@/component/Information";
-import { Picture } from "@/component/Picture";
+import { Hamster } from '@/component/Hamster'
+import { Information } from '@/component/Information'
 
 export default function Validation() {
     return (
         <main>
-            <div className="relative">
-                <Information title="Un momento..." text="Estamos procesando tu código QR. Esto puede tomar unos momentos. Por favor, espera la confirmación." />
-                {/* <Picture picture="../qr-code.svg"/>              */}
-                <Hamster/>
+            <div>
+                <Information
+                    title="Un momento..."
+                    text="Estamos procesando tu código QR. Esto puede tomar unos momentos. Por favor, espera la confirmación."
+                />
+                <Hamster />
             </div>
         </main>
-    );
-  }
+    )
+}

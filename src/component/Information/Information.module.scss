@@ -1,22 +1,15 @@
-.information {
-    padding: 4vw;
+.information{
+    margin: 5vw;
 }
+
 .title{
     font-size: 8vw;
     @apply text-primary-500 text-center font-bold;
 }
 
 .text{
+    margin-top: 5vw;
     font-size: 4vw;
-    padding-bottom: 5vw;
-    padding-top: 5vw;
+    text-align: center;
     @apply text-surface-800-200;
 }
-.frame{
-    display: flex;
-    justify-content: center;
-}
-.picture {
-    width: 60%;
-    border-radius: 15px;
-  }

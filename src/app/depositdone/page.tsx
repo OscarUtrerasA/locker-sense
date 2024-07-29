@@ -1,21 +1,21 @@
 'use client'
 import { Information } from '@/component/Information'
-import { HandMetal } from 'lucide-react'
+import { PackageCheck } from 'lucide-react'
 import { redirect } from '../../helpers/redirect'
 
-export default function Bye() {
+export default function DepositDone() {
     redirect('/', 5000)
     return (
         <main>
-            <div className="relative  grid justify-items-center">
+            <div className="relative grid justify-items-center">
                 <Information
-                    title="¡Gracias por usar locker!"
+                    title="Depósito realizado"
                     text="Que no te pegue la puerta al salir."
                 />
-                <HandMetal
+                <PackageCheck
                     size={256}
                     strokeWidth={1}
-                    className="stroke-primary-500  mt-80"
+                    className="stroke-primary-500 mt-80"
                 />
             </div>
         </main>

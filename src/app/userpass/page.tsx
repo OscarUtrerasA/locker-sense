@@ -1,5 +1,6 @@
 'use client'
 import { Backarrow } from '@/component/Backarrow'
+import { Keyboard } from '@/component/Keyboard'
 import { FormEvent } from 'react'
 import { useState } from 'react'
 // import { CircleDollarSign, Check, Search } from 'lucide-react'
@@ -8,6 +9,69 @@ export default function UserPass() {
     const [password, setPassword] = useState('')
     const [run, setRun] = useState('')
     const [responseMessage, setResponseMessage] = useState('')
+
+    type Tecla = {
+        ancho: string
+        accion: 'add' | 'delete' | 'suprimir'
+        text: string
+    }
+
+    const handleTeclaClick = (tecla: Tecla) => {
+        if (tecla.accion == 'delete') setRun('')
+        else setRun(formatRUN(run + tecla.text))
+    }
+
+    function formatRUN(run: string): string {
+        // Eliminar cualquier carácter que no sea un número o la letra K
+        run = run.replace(/[^0-9kK]/g, '')
+
+        // Separar el dígito verificador del resto del RUN
+        const runWithoutDV = run.slice(0, -1)
+        const dv = run.slice(-1)
+
+        // Formatear el RUN sin el dígito verificador
+        let formattedRUN = ''
+        for (let i = runWithoutDV.length - 1, j = 1; i >= 0; i--, j++) {
+            formattedRUN = runWithoutDV.charAt(i) + formattedRUN
+            if (j % 3 === 0 && i !== 0) {
+                formattedRUN = '.' + formattedRUN
+            }
+        }
+
+        // Agregar el dígito verificador con un guion
+        formattedRUN += '-' + dv.toUpperCase()
+
+        return formattedRUN
+    }
+
+    type FilasTeclas = Tecla[]
+
+    // El objeto rut con el tipo correspondiente
+    const rut: { teclas: FilasTeclas[] } = {
+        teclas: [
+            [
+                { ancho: '1', accion: 'add', text: '1' },
+                { ancho: '1', accion: 'add', text: '2' },
+                { ancho: '1', accion: 'add', text: '3' },
+            ],
+            [
+                { ancho: '1', accion: 'add', text: '4' },
+                { ancho: '1', accion: 'add', text: '5' },
+                { ancho: '1', accion: 'add', text: '6' },
+            ],
+            [
+                { ancho: '1', accion: 'add', text: '7' },
+                { ancho: '1', accion: 'add', text: '8' },
+                { ancho: '1', accion: 'add', text: '9' },
+            ],
+            [
+                { ancho: '1', accion: 'add', text: 'K' },
+                { ancho: '1', accion: 'add', text: '0' },
+                { ancho: '1', accion: 'delete', text: 'Borrar' },
+            ],
+        ],
+    }
+
     const handleSubmit = async (e: any) => {
         e.preventDefault()
         console.log(JSON.stringify({ run, password }))
@@ -35,6 +99,7 @@ export default function UserPass() {
             setResponseMessage(`Error: ${error.message}`)
         }
     }
+
     return (
         <main className="relative grid justify-items-center">
             <div style={{ paddingTop: '8%' }}> {/* Spacer */}</div>
@@ -74,7 +139,6 @@ export default function UserPass() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-
                 <button
                     type="submit"
                     className="bg-primary-500 hover:bg-primary-700 text-white text-xl font-bold mt-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -82,6 +146,21 @@ export default function UserPass() {
                     Validar
                 </button>
             </form>
+
+            <div className="w-9/12 py-32">
+                <div className="grid gap-4 grid-cols-3 justify-center">
+                    {rut.teclas.flat().map((tecla, index) => (
+                        <button
+                            key={index}
+                            className="flex items-center justify-center w-full h-20 rounded-lg border-2 border-transparent bg-primary-400 text-white text-3xl"
+                            onClick={() => handleTeclaClick(tecla)}
+                        >
+                            {tecla.text}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
             <p className="text-center text-surface-400 text-xs">
                 &copy;2024 TotalPack Ltda.
             </p>

@@ -9,6 +9,8 @@ export default function UserPass() {
     const [password, setPassword] = useState('')
     const [run, setRun] = useState('')
     const [responseMessage, setResponseMessage] = useState('')
+    const [isRunFocused, setIsRunFocused] = useState(false)
+    const [isPasswordFocused, setIsPasswordFocused] = useState(false)
 
     type Tecla = {
         ancho: string
@@ -16,9 +18,14 @@ export default function UserPass() {
         text: string
     }
 
-    const handleTeclaClick = (tecla: Tecla) => {
-        if (tecla.accion == 'delete') setRun('')
-        else setRun(formatRUN(run + tecla.text))
+    const handleTeclaClick = (tecla: Tecla, selection: 'run' | 'pass') => {
+        if (selection === 'run') {
+            if (tecla.accion == 'delete') setRun('')
+            else setRun(formatRUN(run + tecla.text))
+        } else if (selection === 'pass') {
+            if (tecla.accion == 'delete') setPassword('')
+            else setPassword(password + tecla.text)
+        }
     }
 
     function formatRUN(run: string): string {
@@ -44,6 +51,16 @@ export default function UserPass() {
         return formattedRUN
     }
 
+    const toggleSelection = (selection: 'run' | 'pass'): void => {
+        if (selection === 'run') {
+            setIsRunFocused(true)
+            setIsPasswordFocused(false)
+        } else if (selection === 'pass') {
+            setIsRunFocused(false)
+            setIsPasswordFocused(true)
+        }
+    }
+
     type FilasTeclas = Tecla[]
 
     // El objeto rut con el tipo correspondiente
@@ -66,6 +83,31 @@ export default function UserPass() {
             ],
             [
                 { ancho: '1', accion: 'add', text: 'K' },
+                { ancho: '1', accion: 'add', text: '0' },
+                { ancho: '1', accion: 'delete', text: 'Borrar' },
+            ],
+        ],
+    }
+
+    const pass: { teclas: FilasTeclas[] } = {
+        teclas: [
+            [
+                { ancho: '1', accion: 'add', text: '1' },
+                { ancho: '1', accion: 'add', text: '2' },
+                { ancho: '1', accion: 'add', text: '3' },
+            ],
+            [
+                { ancho: '1', accion: 'add', text: '4' },
+                { ancho: '1', accion: 'add', text: '5' },
+                { ancho: '1', accion: 'add', text: '6' },
+            ],
+            [
+                { ancho: '1', accion: 'add', text: '7' },
+                { ancho: '1', accion: 'add', text: '8' },
+                { ancho: '1', accion: 'add', text: '9' },
+            ],
+            [
+                { ancho: '1', accion: 'add', text: '' },
                 { ancho: '1', accion: 'add', text: '0' },
                 { ancho: '1', accion: 'delete', text: 'Borrar' },
             ],
@@ -113,13 +155,14 @@ export default function UserPass() {
                         className="block text-xl text-surface-500 font-bold my-2"
                         htmlFor="run"
                     >
-                        RUN:
+                        RUT:
                     </label>
                     <input
                         className="shadow appearance-none border border-error-500 rounded w-full py-2 px-3 text-surface-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                         type="run"
                         id="run"
                         value={run}
+                        onFocus={() => toggleSelection('run')}
                         onChange={(e) => setRun(e.target.value)}
                     />
                 </div>
@@ -129,13 +172,14 @@ export default function UserPass() {
                         htmlFor="password"
                         className="block text-xl text-surface-500 font-bold mb-2"
                     >
-                        Orden:
+                        Contraseña:
                     </label>
                     <input
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-surface-500 leading-tight focus:outline-none focus:shadow-outline"
                         type="password"
                         id="password"
                         value={password}
+                        onFocus={() => toggleSelection('pass')}
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
@@ -146,21 +190,36 @@ export default function UserPass() {
                     Validar
                 </button>
             </form>
-
-            <div className="w-9/12 py-32">
-                <div className="grid gap-4 grid-cols-3 justify-center">
-                    {rut.teclas.flat().map((tecla, index) => (
-                        <button
-                            key={index}
-                            className="flex items-center justify-center w-full h-20 rounded-lg border-2 border-transparent bg-primary-400 text-white text-3xl"
-                            onClick={() => handleTeclaClick(tecla)}
-                        >
-                            {tecla.text}
-                        </button>
-                    ))}
+            {isRunFocused && (
+                <div className="w-9/12 py-32">
+                    <div className="grid gap-4 grid-cols-3 justify-center">
+                        {rut.teclas.flat().map((tecla, index) => (
+                            <button
+                                key={index}
+                                className="flex items-center justify-center w-full h-20 rounded-lg border-2 border-transparent bg-primary-400 text-white text-3xl"
+                                onClick={() => handleTeclaClick(tecla, 'run')}
+                            >
+                                {tecla.text}
+                            </button>
+                        ))}
+                    </div>
                 </div>
-            </div>
-
+            )}
+            {isPasswordFocused && (
+                <div className="w-9/12 py-32">
+                    <div className="grid gap-4 grid-cols-3 justify-center">
+                        {pass.teclas.flat().map((tecla, index) => (
+                            <button
+                                key={index}
+                                className="flex items-center justify-center w-full h-20 rounded-lg border-2 border-transparent bg-primary-400 text-white text-3xl"
+                                onClick={() => handleTeclaClick(tecla, 'pass')}
+                            >
+                                {tecla.text}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
             <p className="text-center text-surface-400 text-xs">
                 &copy;2024 TotalPack Ltda.
             </p>

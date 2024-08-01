@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import { useState } from 'react'
 
 export type KeyboardProps = {
     // types...
@@ -41,13 +42,22 @@ const Keyboard: React.FC<KeyboardProps> = ({}) => {
                 { ancho: '1', accion: 'add', text: '0' },
                 { ancho: '1', accion: 'delete', text: 'delete' },
             ],
-            // [{ ancho: '3', accion: 'suprimir', text: 'Limpiar' }],
-            // [{ ancho: '3', accion: 'suprimir', text: 'Eliminar' }],
         ],
     }
+
     return (
-        <div className="w-9/12 bg-black">
-            <p>hola</p>
+        <div className="w-9/12 py-32">
+            <div className="grid gap-4 grid-cols-3 justify-center">
+                {rut.teclas.flat().map((tecla, index) => (
+                    <button
+                        key={index}
+                        className="flex items-center justify-center w-full h-20 rounded-lg border-2 border-transparent bg-primary-400 text-white text-3xl"
+                        onClick={() => handleTeclaClick(tecla)}
+                    >
+                        {tecla.text}
+                    </button>
+                ))}
+            </div>
         </div>
     )
 }

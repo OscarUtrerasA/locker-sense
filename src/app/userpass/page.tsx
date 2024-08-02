@@ -114,9 +114,14 @@ export default function UserPass() {
         ],
     }
 
+    function removeDots(input: string): string {
+        return input.replace(/\./g, '')
+    }
+
     const handleSubmit = async (e: any) => {
         e.preventDefault()
-        console.log(JSON.stringify({ run, password }))
+        const aux_run = removeDots(run)
+        console.log(JSON.stringify({ aux_run, password }))
 
         const apiUrl = `http://localhost:85/validate?user=${encodeURIComponent(
             run
@@ -211,7 +216,7 @@ export default function UserPass() {
                         {pass.teclas.flat().map((tecla, index) => (
                             <button
                                 key={index}
-                                className="flex items-center justify-center w-full h-20 rounded-lg border-2 border-transparent bg-primary-400 text-white text-3xl"
+                                className="flex items-center justify-center w-full h-20 rounded-lg border-2 border-transparent bg-secondary-400 text-white text-3xl"
                                 onClick={() => handleTeclaClick(tecla, 'pass')}
                             >
                                 {tecla.text}

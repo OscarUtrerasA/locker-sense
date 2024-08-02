@@ -124,7 +124,7 @@ export default function UserPass() {
         console.log(JSON.stringify({ aux_run, password }))
 
         const apiUrl = `http://localhost:85/validate?user=${encodeURIComponent(
-            run
+            aux_run
         )}&pass=${encodeURIComponent(password)}`
 
         // Realizar la petición POST

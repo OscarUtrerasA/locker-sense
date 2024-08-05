@@ -21,37 +21,27 @@ const Footer: React.FC<FooterProps> = ({}) => {
     const clientMethod = 'SetCurrentView' // This is the method invoqued by the .Net API
 
     useEffect(() => {
-        const ports = [85, 5000] // Lista de puertos a intentar
-        let connection = null
+        const connect = new HubConnectionBuilder()
+            .withUrl('http://localhost:85/frontRpc')
+            .withAutomaticReconnect()
+            .configureLogging(LogLevel.Information)
+            .build()
 
-        for (const port of ports) {
-            try {
-                const connect = new HubConnectionBuilder()
-                    .withUrl(`http://localhost:${port}/frontRpc`)
-                    .withAutomaticReconnect()
-                    .configureLogging(LogLevel.Information)
-                    .build()
+        setConnection(connect)
 
-                setConnection(connect)
-
-                connect.start()
-                connection = connect // Guardar la conexión exitosa
-
+        connect
+            .start()
+            .then(() => {
                 connect.on(clientMethod, (content) => {
                     console.log('Cambiando la pagina a: ', content)
                     routerPush(content)
                 })
+                // connect.invoke("RetrieveMessageHistory");
+            })
+            .catch((err) =>
+                console.error('Error while connecting to SignalR Hub:', err)
+            )
 
-                // Si se conecta correctamente, salimos del bucle
-                break
-            } catch (err) {
-                console.error(
-                    `Error while connecting to SignalR Hub on port ${port}:`,
-                    err
-                )
-                // Si ocurre un error, seguimos con el siguiente puerto
-            }
-        }
         return () => {
             if (connection) {
                 connection.off(clientMethod)

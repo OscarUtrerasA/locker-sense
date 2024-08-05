@@ -229,7 +229,6 @@ export default function UserPass() {
             <p className="text-center text-surface-400 text-xs">
                 &copy;2024 TotalPack Ltda.
             </p>
-            <InactivityDetector />
         </main>
     )
 }

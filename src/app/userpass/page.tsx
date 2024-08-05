@@ -1,6 +1,7 @@
 'use client'
 import { Backarrow } from '@/component/Backarrow'
 import { Keyboard } from '@/component/Keyboard'
+import InactivityDetector from '@/helpers/InactivityDetector'
 import { FormEvent } from 'react'
 import { useState } from 'react'
 // import { CircleDollarSign, Check, Search } from 'lucide-react'
@@ -228,6 +229,7 @@ export default function UserPass() {
             <p className="text-center text-surface-400 text-xs">
                 &copy;2024 TotalPack Ltda.
             </p>
+            <InactivityDetector />
         </main>
     )
 }

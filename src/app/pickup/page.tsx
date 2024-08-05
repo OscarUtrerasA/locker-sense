@@ -6,8 +6,8 @@ export default function Success() {
         <main>
             <div className="relative  grid justify-items-center">
                 <Information
-                    title="¡Éxito!"
-                    text="Tu casillero está ahora abierto. Por favor, toma tus artículos y cierra la puerta."
+                    title="¡Correcto!"
+                    text="Tus credenciales son válidas. Ahora puedes retirar tu pedido del locker."
                 />
                 <PackageOpen
                     size={256}

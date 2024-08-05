@@ -22,8 +22,8 @@ export default function Home() {
                 />
 
                 <Information
-                    title="Locker"
-                    text="Presenta QR o usa tu clave."
+                    title="Bienvenido"
+                    text="Para acceder, utiliza el código QR o ingresa con tu usuario y clave."
                 />
                 <KeyRound size={40} className="stroke-primary-500" />
             </div>

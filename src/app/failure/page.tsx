@@ -4,14 +4,14 @@ import { Information } from '@/component/Information'
 import { redirect } from '../../helpers/redirect'
 
 export default function Failure() {
-    redirect('/', 20)
+    redirect('/', 16)
     return (
         <main>
             <div className="relative">
                 <Cross />
                 <Information
                     title="Identificación fallida"
-                    text="No pudimos identificar tu código QR. Por favor, verifica que el código sea correcto e intenta de nuevo."
+                    text="Tus credenciales no son válidas. Por favor, verifica tu información e inténtalo de nuevo."
                 />
             </div>
         </main>

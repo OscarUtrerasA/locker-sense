@@ -126,7 +126,7 @@ export default function UserPass() {
         const apiUrl = `http://localhost:85/validate?user=${encodeURIComponent(
             aux_run
         )}&pass=${encodeURIComponent(password)}`
-
+        console.log('APIURL: ', apiUrl)
         // Realizar la petición POST
         try {
             const response = await fetch(apiUrl, {

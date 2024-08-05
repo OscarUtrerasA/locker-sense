@@ -6,8 +6,8 @@ export default function Deposit() {
         <main>
             <div className="relative grid justify-items-center">
                 <Information
-                    title="¡Éxito!"
-                    text="El casillero está ahora abierto. Por favor, deposita los artículos y cierra la puerta."
+                    title="¡Correcto!"
+                    text="El locker se ha abierto. Por favor, deposita el pedido."
                 />
                 <Package
                     size={256}

@@ -1,18 +1,18 @@
 'use client'
 import { Information } from '@/component/Information'
-import { HandMetal } from 'lucide-react'
+import { ThumbsUp } from 'lucide-react'
 import { redirect } from '../../helpers/redirect'
 
 export default function Bye() {
-    redirect('/', 12)
+    redirect('/', 13)
     return (
         <main>
             <div className="relative  grid justify-items-center">
                 <Information
-                    title="¡Gracias por usar locker!"
-                    text="Que no te pegue la puerta al salir."
+                    title="¡Saludos!"
+                    text="Gracias por utilizar nuestros lockers. Esperamos que tu experiencia haya sido excelente."
                 />
-                <HandMetal
+                <ThumbsUp
                     size={256}
                     strokeWidth={1}
                     className="stroke-primary-500  mt-80"

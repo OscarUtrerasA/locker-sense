@@ -7,7 +7,7 @@ export default function Validation() {
             <div>
                 <Information
                     title="Un momento..."
-                    text="Estamos procesando tu código QR. Esto puede tomar unos momentos. Por favor, espera la confirmación."
+                    text="Estamos procesando tus credenciales. Esto puede tomar unos momentos. Por favor, espera la confirmación."
                 />
                 <Hamster />
             </div>

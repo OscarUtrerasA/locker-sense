@@ -1,10 +1,10 @@
 'use client'
 import { Information } from '@/component/Information'
 import { Users } from 'lucide-react'
-import { redirect } from '../../helpers/redirect'
+import { Redirect } from '../../helpers/Redirect'
 
 export default function GoToDesk() {
-    redirect('/', 17)
+    Redirect('/', 17)
     return (
         <main>
             <div className="relative grid justify-items-center">

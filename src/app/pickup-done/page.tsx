@@ -1,10 +1,10 @@
 'use client'
 import { Information } from '@/component/Information'
 import { ThumbsUp } from 'lucide-react'
-import { redirect } from '../../helpers/redirect'
+import { Redirect } from '../../helpers/Redirect'
 
 export default function Bye() {
-    redirect('/', 13)
+    Redirect('/', 13)
     return (
         <main>
             <div className="relative  grid justify-items-center">

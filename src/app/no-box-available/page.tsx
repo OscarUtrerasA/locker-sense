@@ -1,10 +1,10 @@
 'use client'
 import { Information } from '@/component/Information'
 import { PackageX } from 'lucide-react'
-import { redirect } from '../../helpers/redirect'
+import { Redirect } from '../../helpers/Redirect'
 
 export default function NoBoxAvailable() {
-    redirect('/', 18)
+    Redirect('/', 18)
     return (
         <main>
             <div className="relative grid justify-items-center">

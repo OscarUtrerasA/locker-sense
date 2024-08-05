@@ -1,7 +1,6 @@
 'use client'
 import { Backarrow } from '@/component/Backarrow'
 import { Keyboard } from '@/component/Keyboard'
-import InactivityDetector from '@/helpers/InactivityDetector'
 import { FormEvent } from 'react'
 import { useState } from 'react'
 // import { CircleDollarSign, Check, Search } from 'lucide-react'

@@ -1,10 +1,10 @@
 'use client'
 import { Cross } from '@/component/Cross'
 import { Information } from '@/component/Information'
-import { redirect } from '../../helpers/redirect'
+import { Redirect } from '../../helpers/Redirect'
 
 export default function Failure() {
-    redirect('/', 16)
+    Redirect('/', 16)
     return (
         <main>
             <div className="relative">

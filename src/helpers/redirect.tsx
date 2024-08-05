@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
-export function redirect(route: string, words: number) {
+export function Redirect(route: string, words: number) {
     const router = useRouter()
     const readingSpeed = 150 // palabras por minuto
     //Words es la cantidad de palabras a leer en la página, se cuenta tanto título como cuerpo.

@@ -1,10 +1,10 @@
 'use client'
 import { Information } from '@/component/Information'
 import { PackageCheck } from 'lucide-react'
-import { redirect } from '../../helpers/redirect'
+import { Redirect } from '../../helpers/Redirect'
 
 export default function DepositDone() {
-    redirect('/', 22)
+    Redirect('/', 22)
     return (
         <main>
             <div className="relative grid justify-items-center">

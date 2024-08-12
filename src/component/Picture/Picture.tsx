@@ -1,19 +1,25 @@
-"use client";
-import React from 'react';
-import styles from './Picture.module.scss';
+'use client'
+import React from 'react'
+import styles from './Picture.module.scss'
+import Image from 'next/image'
 
 export type PictureProps = {
-	picture: string;
+    picture: string
 }
 
-const Picture: React.FC<PictureProps>  = ({picture}) => {
-	return (
-		<div className={styles.picture}>
- 			<div className={styles.frame}>
-				<img className={styles.image} src={picture} alt="imagen de informacion" />
-			</div>
- 		</div>
-	);
-};
+const Picture: React.FC<PictureProps> = ({ picture }) => {
+    return (
+        <div className={styles.picture}>
+            <div className={styles.frame}>
+                <Image
+                    className={styles.image}
+                    src={picture}
+                    alt="imagen de informacion"
+                    layout="responsive"
+                />
+            </div>
+        </div>
+    )
+}
 
-export default Picture;
+export default Picture

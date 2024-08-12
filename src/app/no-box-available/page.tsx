@@ -1,7 +1,7 @@
 'use client'
 import { Information } from '@/component/Information'
 import { PackageX } from 'lucide-react'
-import { Redirect } from '../../helpers/Redirect'
+import { Redirect } from '@/helpers/redirect'
 
 export default function NoBoxAvailable() {
     Redirect('/', 18)

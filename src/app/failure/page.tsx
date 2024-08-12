@@ -1,7 +1,7 @@
 'use client'
 import { Cross } from '@/component/Cross'
 import { Information } from '@/component/Information'
-import { Redirect } from '../../helpers/Redirect'
+import { Redirect } from '@/helpers/redirect'
 
 export default function Failure() {
     Redirect('/', 16)

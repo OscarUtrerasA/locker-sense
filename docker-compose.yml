@@ -7,3 +7,4 @@ services:
             target: prerelase
         ports:
             - 8000:3000
+        network_mode: host

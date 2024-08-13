@@ -17,6 +17,7 @@ export type FooterProps = {
 }
 
 const Footer: React.FC<FooterProps> = ({}) => {
+    let url: string = AppSetting.api['locker-service-url']
     const router = useRouter()
     const [connection, setConnection] = useState<HubConnection | null>(null)
     const clientMethod = 'SetCurrentView' // This is the method invoqued by the .Net API
@@ -25,7 +26,7 @@ const Footer: React.FC<FooterProps> = ({}) => {
     }
     useEffect(() => {
         const connect = new HubConnectionBuilder()
-            .withUrl(AppSetting.api['locker-service-url'] + '/frontRpc')
+            .withUrl(`${url}/frontRpc`)
             .withAutomaticReconnect()
             .configureLogging(LogLevel.Information)
             .build()

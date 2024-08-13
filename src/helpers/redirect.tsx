@@ -14,5 +14,5 @@ export function Redirect(route: string, words: number) {
 
         // Limpiar el timeout si el componente se desmonta antes de que el timeout termine
         return () => clearTimeout(timer)
-    }, [])
+    }, [route, router, seconds])
 }

@@ -1,6 +1,5 @@
 'use client'
 import { Backarrow } from '@/component/Backarrow'
-import AppSetting from '../../../appSettings.json'
 import { Keyboard } from '@/component/Keyboard'
 import { FormEvent } from 'react'
 import { useState } from 'react'
@@ -124,12 +123,6 @@ export default function UserPass() {
         const aux_run = removeDots(run)
         console.log(JSON.stringify({ aux_run, password }))
 
-        // const apiUrl =
-        //     AppSetting.api['locker-service-url'] +
-        //     `/validate?user=${encodeURIComponent(
-        //         aux_run
-        //     )}&pass=${encodeURIComponent(password)}`
-        // console.log('APIURL: ', apiUrl)
         const apiUrl = `http://localhost:85/validate?user=${encodeURIComponent(
             aux_run
         )}&pass=${encodeURIComponent(password)}`

@@ -1,5 +1,4 @@
 'use client'
-import AppSetting from '../../../appSettings.json'
 import React from 'react'
 import styles from './Footer.module.scss'
 
@@ -17,13 +16,10 @@ export type FooterProps = {
 }
 
 const Footer: React.FC<FooterProps> = ({}) => {
-    let url: string = AppSetting.api['locker-service-url']
     const router = useRouter()
     const [connection, setConnection] = useState<HubConnection | null>(null)
     const clientMethod = 'SetCurrentView' // This is the method invoqued by the .Net API
-    const routerPush = (rute: string) => {
-        return router.push(rute)
-    }
+
     useEffect(() => {
         const connect = new HubConnectionBuilder()
             .withUrl('http://localhost:85/frontRpc')
@@ -51,7 +47,11 @@ const Footer: React.FC<FooterProps> = ({}) => {
                 connection.off(clientMethod)
             }
         }
-    }, [connection, routerPush])
+    }, [])
+
+    const routerPush = (rute: string) => {
+        return router.push(rute)
+    }
     return <div className={styles.footer}></div>
 }
 

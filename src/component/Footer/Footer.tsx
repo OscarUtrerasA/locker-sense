@@ -26,7 +26,7 @@ const Footer: React.FC<FooterProps> = ({}) => {
     }
     useEffect(() => {
         const connect = new HubConnectionBuilder()
-            .withUrl(`${url}/frontRpc`)
+            .withUrl('http://localhost:85/frontRpc')
             .withAutomaticReconnect()
             .configureLogging(LogLevel.Information)
             .build()
